@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificar Morte do Personagem</title>
+  <style>
+    /* Resetando margens e paddings */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Fundo com gradiente animado */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg, #ff6b6b, #f7b7b7, #ffcc5c, #ffbc00);
+      background-size: 400% 400%;
+      animation: gradientBackground 10s ease infinite;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animação do fundo */
+    @keyframes gradientBackground {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Contêiner principal */
+    .container {
+      background-color: rgba(255, 255, 255, 0.9); /* Fundo levemente transparente */
+      padding: 30px;
+      border-radius: 15px;
+      border: 8px solid #000000;
+      text-align: center;
+      width: 80%;
+      max-width: 800px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra suave */
+      transform-style: preserve-3d; /* Permite que o 3D seja aplicado */
+      transition: transform 0.5s ease; /* Transição suave para efeitos de rotação */
+      z-index: 1; /* Garante que o contêiner esteja acima do fundo */
+    }
+
+    /* Efeito de rotação 3D quando o mouse interage */
+    .container:hover {
+      transform: rotateY(10deg) rotateX(10deg); /* Gira ligeiramente no eixo X e Y */
+    }
+
+    /* Título da página */
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    /* Estilo para as listas */
+    ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style-type: square;
+    }
+
+    /* Estilizando os itens das listas */
+    ol > li {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    ul > li {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    /* Destaque para itens de nível superior */
+    ol > li > span {
+      font-weight: bold;
+      color: #2980b9;
+    }
+
+    /* Estilo para as sublistas (aninhadas) */
+    ul {
+      margin-left: 20px;
+      list-style-type: circle;
+    }
+
+    /* Estilo para os inputs */
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1f6392;
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Verificar Morte do Personagem</h2>
+    <label for="saude">Saúde do Personagem:</label>
+    <input type="number" id="saude" placeholder="Digite a saúde" />
+
+    <label for="dano">Dano do Ataque:</label>
+    <input type="number" id="dano" placeholder="Digite o dano recebido" />
+
+    <button onclick="verificarMorte()">Verificar Morte</button>
+
+    <p id="resultado"></p>
+  </div>
+
+  <script>
+    // Função que verifica se o personagem morreu
+    function verificarMorte() {
+      // Pega os valores dos inputs
+      const saude = document.getElementById("saude").value;
+      const dano = document.getElementById("dano").value;
+
+      // Converte os valores para números
+      const saudeNumerica = parseInt(saude, 10);
+      const danoNumerico = parseInt(dano, 10);
+
+      // Verifica se o dano matou o personagem (se a saúde for menor ou igual a zero)
+      if (danoNumerico >= saudeNumerica) {
+        document.getElementById("resultado").textContent = "O personagem morreu! (Retorno: 1)";
+      } else {
+        document.getElementById("resultado").textContent = "O personagem está vivo! (Retorno: 0)";
+      }
+    }
+  </script>
+
+</body>
+</html>
